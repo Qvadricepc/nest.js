@@ -43,6 +43,14 @@ $ pnpm run start:dev
 
 # production mode
 $ pnpm run start:prod
+
+# create volumes for docker
+
+$ bash init-volumes.sh
+
+# run docker-compose
+
+$ pnpm docker-compose
 ```
 
 ## Run tests
