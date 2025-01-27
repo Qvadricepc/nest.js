@@ -131,15 +131,3 @@ dist
 .idea
 # Ignore the entire Docker directory
 docker/
-
-# Ignore Docker-specific files
-*.pid
-*.log
-*.sock
-
-# Ignore Docker Compose override files (commonly used for local development)
-docker-compose.override.yml
-
-# Ignore Docker volume data
-volumes/
-data/
