@@ -3,6 +3,8 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule } from '@nestjs/config';
+import { ListModule } from './modules/list/list.module';
+import { ItemModule } from './modules/item/item.module';
 
 @Module({
   imports: [
@@ -19,6 +21,8 @@ import { ConfigModule } from '@nestjs/config';
       migrations: ['dist/migrations/*.js'],
       migrationsRun: true,
     }),
+    ListModule,
+    ItemModule,
   ],
   controllers: [AppController],
   providers: [AppService],

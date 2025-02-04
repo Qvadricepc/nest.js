@@ -6,12 +6,12 @@ import {
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
-import { List } from './list.entity';
+import { List } from '../list/list.entity';
 
 @Entity()
 export class Item {
   @PrimaryGeneratedColumn('uuid')
-  id: number;
+  id: string;
 
   @Column({ length: 120 })
   description: string;
