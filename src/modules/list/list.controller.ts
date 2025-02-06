@@ -1,5 +1,15 @@
-import { Controller, Get, Post, Delete, Param, Body } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Delete,
+  Param,
+  Body,
+  Put,
+} from '@nestjs/common';
 import { ListService } from '../../services/list.service';
+import { UpdateListDto } from './dto/update-list.dto';
+import { CreateListDto } from './dto/create-list.dto';
 
 @Controller('lists')
 export class ListController {
@@ -16,8 +26,13 @@ export class ListController {
   }
 
   @Post()
-  create(@Body('name') name: string) {
-    return this.listService.create(name);
+  create(@Body() createListDto: CreateListDto) {
+    return this.listService.create(createListDto);
+  }
+
+  @Put(':id')
+  update(@Param('id') id: string, @Body() updateListDto: UpdateListDto) {
+    return this.listService.update(id, updateListDto);
   }
 
   @Delete(':id')

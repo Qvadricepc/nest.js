@@ -16,7 +16,7 @@ export class Item {
   @Column({ length: 120 })
   description: string;
 
-  @Column()
+  @Column({ default: false })
   isDone: boolean;
 
   @CreateDateColumn()

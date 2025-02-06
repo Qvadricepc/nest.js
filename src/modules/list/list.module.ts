@@ -8,6 +8,6 @@ import { ListService } from '../../services/list.service';
   imports: [TypeOrmModule.forFeature([List])],
   providers: [ListService],
   controllers: [ListController],
-  exports: [ListService],
+  exports: [TypeOrmModule],
 })
 export class ListModule {}

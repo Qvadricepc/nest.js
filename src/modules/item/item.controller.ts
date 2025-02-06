@@ -8,6 +8,8 @@ import {
   Body,
 } from '@nestjs/common';
 import { ItemService } from '../../services/item.service';
+import { CreateItemDto } from './dto/create-item.dto';
+import { UpdateItemDto } from './dto/update-item.dto';
 
 @Controller('items')
 export class ItemController {
@@ -19,16 +21,13 @@ export class ItemController {
   }
 
   @Post()
-  create(
-    @Body('description') description: string,
-    @Body('listId') listId: string,
-  ) {
-    return this.itemService.create(description, listId);
+  create(@Body() createItemDto: CreateItemDto) {
+    return this.itemService.create(createItemDto);
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body('isDone') isDone: boolean) {
-    return this.itemService.update(id, isDone);
+  update(@Param('id') id: string, @Body() updateItemDto: UpdateItemDto) {
+    return this.itemService.update(id, updateItemDto);
   }
 
   @Delete(':id')
