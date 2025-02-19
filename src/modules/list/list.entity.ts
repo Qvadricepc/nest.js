@@ -1,26 +1,11 @@
-import {
-  Column,
-  CreateDateColumn,
-  Entity,
-  OneToMany,
-  PrimaryGeneratedColumn,
-  UpdateDateColumn,
-} from 'typeorm';
+import { Column, Entity, OneToMany } from 'typeorm';
 import { Item } from '../item/item.entity';
+import { BaseEntity } from '../../common/abstracts/base-entiy.abstract';
 
 @Entity()
-export class List {
-  @PrimaryGeneratedColumn('uuid')
-  id: string;
-
-  @Column({ length: 30 })
+export class List extends BaseEntity {
+  @Column({ name: 'name', length: 30 })
   name: string;
-
-  @CreateDateColumn()
-  created_at: Date;
-
-  @UpdateDateColumn()
-  updated_at: Date;
 
   @OneToMany(() => Item, (item) => item.list, { cascade: true })
   items: Item[];

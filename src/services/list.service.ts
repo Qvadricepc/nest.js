@@ -36,7 +36,7 @@ export class ListService {
     const list = await this.findOne(id);
 
     Object.assign(list, updateListDto);
-    return await this.listRepository.save(list);
+    return await this.listRepository.save({ ...list, ...updateListDto });
   }
 
   async remove(id: string): Promise<void> {

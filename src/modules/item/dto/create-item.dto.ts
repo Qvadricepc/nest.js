@@ -3,6 +3,7 @@ import {
   IsNotEmpty,
   IsOptional,
   IsString,
+  IsUUID,
   Length,
 } from 'class-validator';
 
@@ -16,7 +17,7 @@ export class CreateItemDto {
   @IsBoolean()
   isDone?: boolean;
 
-  @IsString()
+  @IsUUID()
   @IsNotEmpty()
   listId: string;
 }

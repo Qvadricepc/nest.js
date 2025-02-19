@@ -1,29 +1,14 @@
-import {
-  Column,
-  CreateDateColumn,
-  Entity,
-  ManyToOne,
-  PrimaryGeneratedColumn,
-  UpdateDateColumn,
-} from 'typeorm';
+import { Column, Entity, ManyToOne } from 'typeorm';
 import { List } from '../list/list.entity';
+import { BaseEntity } from '../../common/abstracts/base-entiy.abstract';
 
 @Entity()
-export class Item {
-  @PrimaryGeneratedColumn('uuid')
-  id: string;
-
-  @Column({ length: 120 })
+export class Item extends BaseEntity {
+  @Column({ name: 'description', length: 120 })
   description: string;
 
-  @Column({ default: false })
+  @Column({ name: 'is_done', default: false })
   isDone: boolean;
-
-  @CreateDateColumn()
-  created_at: Date;
-
-  @UpdateDateColumn()
-  updated_at: Date;
 
   @ManyToOne(() => List, (list) => list.items, { onDelete: 'CASCADE' })
   list: List;

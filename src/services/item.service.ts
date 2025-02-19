@@ -43,7 +43,7 @@ export class ItemService {
     const item = await this.findOne(id);
 
     Object.assign(item, updateItemDto);
-    return await this.itemRepository.save(item);
+    return await this.itemRepository.save({ ...item, ...updateItemDto });
   }
 
   async remove(id: string): Promise<void> {
