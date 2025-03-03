@@ -1,10 +1,10 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { Item } from '../modules/item/item.entity';
-import { List } from '../modules/list/list.entity';
-import { CreateItemDto } from '../modules/item/dto/create-item.dto';
-import { UpdateItemDto } from '../modules/item/dto/update-item.dto';
+import { Item } from '../entities/item.entity';
+import { List } from '../entities/list.entity';
+import { CreateItemDto } from './dto/create-item.dto';
+import { UpdateItemDto } from './dto/update-item.dto';
 
 @Injectable()
 export class ItemService {

@@ -1,9 +1,9 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { List } from '../modules/list/list.entity';
-import { UpdateListDto } from '../modules/list/dto/update-list.dto';
-import { CreateListDto } from '../modules/list/dto/create-list.dto';
+import { List } from '../entities/list.entity';
+import { UpdateListDto } from './dto/update-list.dto';
+import { CreateListDto } from './dto/create-list.dto';
 
 @Injectable()
 export class ListService {

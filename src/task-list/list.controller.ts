@@ -7,7 +7,7 @@ import {
   Body,
   Put,
 } from '@nestjs/common';
-import { ListService } from '../../services/list.service';
+import { ListService } from './list.service';
 import { UpdateListDto } from './dto/update-list.dto';
 import { CreateListDto } from './dto/create-list.dto';
 
