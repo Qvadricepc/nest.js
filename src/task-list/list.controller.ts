@@ -6,18 +6,23 @@ import {
   Param,
   Body,
   Put,
+  Query,
+  ValidationPipe,
 } from '@nestjs/common';
 import { ListService } from './list.service';
 import { UpdateListDto } from './dto/update-list.dto';
 import { CreateListDto } from './dto/create-list.dto';
+import { FindAllListsDto } from './dto/find-all-list.dto';
 
 @Controller('lists')
 export class ListController {
   constructor(private readonly listService: ListService) {}
 
   @Get()
-  findAll() {
-    return this.listService.findAll();
+  findAll(
+    @Query(new ValidationPipe({ transform: true })) query: FindAllListsDto,
+  ) {
+    return this.listService.findAll(query);
   }
 
   @Get(':id')

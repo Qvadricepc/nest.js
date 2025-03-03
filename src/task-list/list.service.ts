@@ -4,6 +4,7 @@ import { Repository } from 'typeorm';
 import { List } from '../entities/list.entity';
 import { UpdateListDto } from './dto/update-list.dto';
 import { CreateListDto } from './dto/create-list.dto';
+import { FindAllListsDto } from './dto/find-all-list.dto';
 
 @Injectable()
 export class ListService {
@@ -12,8 +13,16 @@ export class ListService {
     private listRepository: Repository<List>,
   ) {}
 
-  async findAll(): Promise<List[]> {
-    return this.listRepository.find({ relations: ['items'] });
+  async findAll(query: FindAllListsDto) {
+    const { offset = 0, limit = 10 } = query;
+
+    const [items, total] = await this.listRepository
+      .createQueryBuilder('list')
+      .skip(offset)
+      .take(limit)
+      .getManyAndCount();
+
+    return { items, total, offset, limit };
   }
 
   async findOne(id: string): Promise<List> {
