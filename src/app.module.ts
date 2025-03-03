@@ -4,9 +4,19 @@ import { AppService } from './app.service';
 import { ListModule } from './modules/list/list.module';
 import { ItemModule } from './modules/item/item.module';
 import { DatabaseModule } from './database.module';
+import { ConfigModule } from '@nestjs/config';
+import { validate } from './env.validate';
 
 @Module({
-  imports: [DatabaseModule, ListModule, ItemModule],
+  imports: [
+    DatabaseModule,
+    ListModule,
+    ItemModule,
+    ConfigModule.forRoot({
+      isGlobal: true,
+      validate: validate,
+    }),
+  ],
   controllers: [AppController],
   providers: [AppService],
 })
