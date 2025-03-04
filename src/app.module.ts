@@ -5,6 +5,10 @@ import { ListModule } from './task-list/list.module';
 import { ItemModule } from './task-item/item.module';
 import { DatabaseModule } from './database.module';
 import { ConfigModule } from '@nestjs/config';
+import c from 'config';
+import type { ConfigFactory } from '@nestjs/config';
+// eslint-disable-next-line @typescript-eslint/no-unsafe-return
+export const configuration: ConfigFactory = () => c.util.toObject();
 import { validate } from './env.validate';
 
 @Module({
@@ -15,6 +19,7 @@ import { validate } from './env.validate';
     ConfigModule.forRoot({
       isGlobal: true,
       validate: validate,
+      load: [configuration],
     }),
   ],
   controllers: [AppController],
