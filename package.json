@@ -23,7 +23,6 @@
     "typeorm:run": "pnpm exec typeorm-ts-node-commonjs migration:run -d src/typeorm-cli.config.ts",
     "typeorm:revert": "pnpm exec typeorm-ts-node-commonjs migration:revert -d src/typeorm-cli.config.ts",
     "typeorm:drop": "pnpm exec typeorm-ts-node-commonjs schema:drop -d src/typeorm-cli.config.ts",
-    "db:test": "pnpm exec tsx testConnection.ts"
   },
   "dependencies": {
     "@nestjs/common": "^11.0.1",
