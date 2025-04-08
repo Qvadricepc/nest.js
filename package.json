@@ -4,7 +4,6 @@
   "description": "",
   "author": "",
   "private": true,
-  "type": "module",
   "license": "UNLICENSED",
   "scripts": {
     "build": "nest build",
@@ -19,10 +18,9 @@
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
     "test:e2e": "jest --config ./test/jest-e2e.json",
-    "typeorm:generate": "pnpm exec typeorm-ts-node-commonjs migration:generate src/migrations -d src/typeorm-cli.config.ts",
-    "typeorm:run": "pnpm exec typeorm-ts-node-commonjs migration:run -d src/typeorm-cli.config.ts",
-    "typeorm:revert": "pnpm exec typeorm-ts-node-commonjs migration:revert -d src/typeorm-cli.config.ts",
-    "typeorm:drop": "pnpm exec typeorm-ts-node-commonjs schema:drop -d src/typeorm-cli.config.ts",
+    "migration:generate": "ts-node data-source-cli.ts migration:generate",
+    "migration:run": "ts-node data-source-cli.ts migration:run",
+    "migration:revert": "ts-node data-source-cli.ts migration:revert"
   },
   "dependencies": {
     "@nestjs/common": "^11.0.1",
