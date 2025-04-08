@@ -1,10 +1,10 @@
 import { NestFactory } from '@nestjs/core';
 import { ConfigService } from '@nestjs/config';
 import { DataSource } from 'typeorm';
-import { AppModule } from './app.module';
+import { MigrationAppModule } from './migration-app-module';
 
 export const createDataSource = async (): Promise<DataSource> => {
-  const app = await NestFactory.createApplicationContext(AppModule);
+  const app = await NestFactory.createApplicationContext(MigrationAppModule);
   const configService = app.get(ConfigService);
 
   const entitiesPath = ['src/**/*.entity.ts'];
