@@ -5,6 +5,7 @@ import { ListModule } from './task-list/list.module';
 import { ItemModule } from './task-item/item.module';
 import { ConfigModule } from '@nestjs/config';
 import { validate } from './env.validate';
+import { DatabaseModule } from './database.module';
 
 @Module({
   imports: [
@@ -14,6 +15,7 @@ import { validate } from './env.validate';
       isGlobal: true,
       validate: validate,
     }),
+    DatabaseModule,
   ],
   controllers: [AppController],
   providers: [AppService],
