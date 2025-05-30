@@ -7,7 +7,6 @@ import {
   Body,
   Put,
   Query,
-  ValidationPipe,
 } from '@nestjs/common';
 import { ListService } from './list.service';
 import { UpdateListDto } from './dto/update-list.dto';
@@ -19,9 +18,7 @@ export class ListController {
   constructor(private readonly listService: ListService) {}
 
   @Get()
-  findAll(
-    @Query(new ValidationPipe({ transform: true })) query: FindAllListsDto,
-  ) {
+  findAll(@Query() query: FindAllListsDto) {
     return this.listService.findAll(query);
   }
 
