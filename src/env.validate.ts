@@ -6,6 +6,7 @@ import {
   Min,
   Max,
   validateSync,
+  IsPort,
 } from 'class-validator';
 
 enum Environment {
@@ -35,11 +36,9 @@ class EnvironmentVariables {
   @Transform(({ value }): string => value || 'nest_db')
   POSTGRES_DB: string = 'nest_db';
 
-  @IsNumber()
-  @Min(0)
-  @Max(65535)
-  @Transform(({ value }) => Number(value) || 5432)
-  POSTGRES_PORT: number = 5432;
+  @IsPort()
+  @Transform(({ value }) => String(value) || '5432')
+  POSTGRES_PORT: string = '5432';
 
   // Redis
   @IsNumber()
