@@ -1,6 +1,6 @@
 import { Column, Entity, ManyToOne } from 'typeorm';
 import { List } from './list.entity';
-import { BaseEntity } from './base-entiy.abstract';
+import { BaseEntity } from './base-entity.abstract';
 
 @Entity()
 export class Item extends BaseEntity {

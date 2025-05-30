@@ -7,19 +7,20 @@ import { PostgresConnectionOptions } from 'typeorm/driver/postgres/PostgresConne
   imports: [
     TypeOrmModule.forRootAsync({
       imports: [ConfigModule],
-      useFactory: (
-        configService: ConfigService,
-      ): PostgresConnectionOptions => ({
-        type: 'postgres',
-        host: configService.get<string>('POSTGRES_HOST'),
-        port: configService.get<number>('POSTGRES_PORT'),
-        username: configService.get<string>('POSTGRES_USER'),
-        password: configService.get<string>('POSTGRES_PASSWORD'),
-        database: configService.get<string>('POSTGRES_DB'),
-        entities: ['src/entities/*.entity.ts'],
-        migrations: ['src/migrations/*.ts'],
-        synchronize: false,
-      }),
+      useFactory: (configService: ConfigService): PostgresConnectionOptions => {
+        const host = configService.get<string>('POSTGRES_HOST') || 'localhost';
+        return {
+          type: 'postgres',
+          host: host,
+          port: configService.get<number>('POSTGRES_PORT'),
+          username: configService.get<string>('POSTGRES_USER'),
+          password: configService.get<string>('POSTGRES_PASSWORD'),
+          database: configService.get<string>('POSTGRES_DB'),
+          entities: [__dirname + '/entities/*.entity{.ts,.js}'],
+          migrations: [__dirname + '/migrations/*.{ts,js}'],
+          synchronize: false,
+        };
+      },
       inject: [ConfigService],
     }),
   ],

@@ -20,6 +20,10 @@ class EnvironmentVariables {
 
   // PostgreSQL
   @IsString()
+  @Transform(({ value }): string => value || 'localhost')
+  POSTGRES_HOST: string = 'localhost';
+
+  @IsString()
   @Transform(({ value }): string => value || 'postgres')
   POSTGRES_USER: string = 'postgres';
 
