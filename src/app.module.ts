@@ -1,28 +1,21 @@
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { TypeOrmModule } from '@nestjs/typeorm';
+import { ListModule } from './task-list/list.module';
+import { ItemModule } from './task-item/item.module';
 import { ConfigModule } from '@nestjs/config';
-import { ListModule } from './modules/list/list.module';
-import { ItemModule } from './modules/item/item.module';
+import { validate } from './env.validate';
+import { DatabaseModule } from './database.module';
 
 @Module({
   imports: [
-    ConfigModule.forRoot(),
-    TypeOrmModule.forRoot({
-      type: 'postgres',
-      host: process.env.POSTGRES_HOST || 'localhost',
-      port: Number(process.env.POSTGRES_PORT) || 5432,
-      username: process.env.POSTGRES_USER,
-      password: process.env.POSTGRES_PASSWORD,
-      database: process.env.POSTGRES_DB,
-      autoLoadEntities: true,
-      synchronize: true,
-      migrations: ['dist/migrations/*.js'],
-      migrationsRun: true,
-    }),
     ListModule,
     ItemModule,
+    ConfigModule.forRoot({
+      isGlobal: true,
+      validate: validate,
+    }),
+    DatabaseModule,
   ],
   controllers: [AppController],
   providers: [AppService],
